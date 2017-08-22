@@ -12,10 +12,9 @@ namespace TestProject.VW.Unit
         {
             if (browser.Equals("ChromeWindows"))
             {
-                String driverPath = "D:\\Microsoft Visual Studio\\2017\\Projects\\TestProject\\packages\\WebDriverChromeDriver.2.10\\tools\\";
+                String driverPath = "D:\\Microsoft Visual Studio\\2017\\Projects\\TestProject\\TestProject";
                 driver = new ChromeDriver(@driverPath);
             }
-            // other drivers initialization
         }
         public IWebDriver GetDriver()
         {
