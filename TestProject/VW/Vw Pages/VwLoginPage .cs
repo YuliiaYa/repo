@@ -2,26 +2,69 @@
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-//using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Support.UI;
 
 
 namespace TestProject.VW.Vw_Pages
 {
-    class VwLoginPage 
+    class VwLoginPage
     {
         public IWebDriver driver;
         public VwLoginPage(IWebDriver driver) {
-            this.driver = driver; 
+            this.driver = driver;
         }
 
-        public readonly By userNameLoc = By.XPath("//input[@id='us1']");
+        public readonly By loginFieldLoc = By.XPath("//input[@id='us1']");
         public readonly By userPasswordLoc = By.XPath("//input[@id='pa1']");
         public readonly By submitButtonLoc = By.XPath("//button[@type='button'][text()='Login']");
+        public readonly By loginFormLoc = By.XPath("//*[@class='modal-content']");
+        public readonly By errorMessageLoc = By.XPath("//div[@class='alert alert-danger']");
 
         public VwLoginPage OpenLoginPage()
         {
             driver.Navigate().GoToUrl("https://volkswagen.adzu4-qa-web.adzu.codeworldwide.com/#");
             return new VwLoginPage(driver);
+        }
+
+        public VwLoginPage EnterLogin(String Login)
+        {
+            try
+            {
+                IWebElement loginField = driver.FindElement(loginFieldLoc);
+                loginField.SendKeys(Login);
+            }
+            catch (StaleElementReferenceException e)
+            {
+                EnterLogin(Login);
+            }
+            return this;
+        }
+
+        public VwLoginPage EnterPassword(String Password)
+        {
+            IWebElement passwordField = driver.FindElement(userPasswordLoc);
+            passwordField.SendKeys(Password);
+            return this;
+        }
+        public void SubmitLogin()
+        {
+            IWebElement submitButton = driver.FindElement(submitButtonLoc);
+            submitButton.Submit();
+            submitButton.Click();
+        }
+        public bool IsLoginFormDisplayed(IWebDriver driver, By loginFormLoc)
+        {
+            if (driver.FindElement(loginFormLoc).Displayed)
+                return true;
+            else
+                return false;
+        }
+             public bool IsErrorMessageDisplayed(IWebDriver driver, By errorMessageLoc)
+        {
+            if (driver.FindElement(errorMessageLoc).Displayed)
+                return true;
+            else
+                return false;
         }
 
 
@@ -30,80 +73,3 @@ namespace TestProject.VW.Vw_Pages
     }
 }
 
-
-//   var driver = new ChromeDriver();
-
-// login = new VwLoginPage(driver);
-
-//public VwLoginPage(IWebDriver driver) { }
-
-//public VwLoginPage OpenLoginPage(string qaBaseURL)
-//{
-//    driver.Navigate().GoToUrl(qaBaseURL);
-//    return new VwLoginPage(driver);
-
-//}
-
-//public VwLoginPage EnterUserNameLogin(String userName)
-//{
-//    try
-//    {
-//        IWebElement userNameLogin = driver.FindElement(userNameLoc);
-//        userNameLogin.SendKeys(userName);
-//    }
-//    catch (StaleElementReferenceException e)
-//    {
-//        EnterUserNameLogin(userName);
-//    }
-//    return this;
-//}
-
-//public VwLoginPage EnterUserPasswordLogin(String userPassword)
-//{
-//    IWebElement userNamePassword = driver.FindElement(userPasswordLoc);
-//    userNamePassword.SendKeys(userPassword);
-//    return this;
-//}
-
-//public void SubmitLogin()
-//{
-//    IWebElement submitButton = driver.FindElement(submitButtonLoc);
-//    submitButton.Submit();
-//    submitButton.Click();
-//}
-
-//   var driver = new ChromeDriver();
-
-// login = new VwLoginPage(driver);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// private IWebDriver driver;
-
-// public VwLoginPage(IWebDriver driver) {
-//   this.driver = driver;
-
-// IWebElement userNameLogin = driver.FindElement(By.XPath("//input[@id='us1']"));
-//  IWebElement userNamePassword = driver.FindElement(By.XPath("//input[@id='pa1']"));
-//  IWebElement loginButton = driver.FindElement(By.XPath
-//    ("//button[@type='button'][text()='Login']"));
-//  }
-// private void OpenLoginPage()
-//  {
-//     driver.Navigate().GoToUrl("https://volkswagen.adzu4-qa-web.adzu.codeworldwide.com/#");
-// }
-
-// }
-//
