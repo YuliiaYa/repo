@@ -18,25 +18,35 @@ namespace TestProject.VW.Vw_Pages
         }
         public readonly By campaignsTitleLoc = By.XPath("//*[@class='col-sm-12']//*[text()='Campaigns']");
         public readonly By campaignsListHomePageLoc = By.XPath("//*[@class='col-sm-4']");
-        private readonly By viewMoreCampaignsLoc = By.XPath("//button[@class='btn btn-default']");
+        public readonly By viewMoreCampaignsLoc = By.XPath("//button[@class='btn btn-default']");
 
-        
         public VwHomePage ClickViewMoreCampaigns()
         {
-                IWebElement viewMoreCampaignsButton = driver.FindElement(viewMoreCampaignsLoc);
-                viewMoreCampaignsButton.Click();
-                return this;
+            IWebElement viewMoreCampaignsButton = driver.FindElement(viewMoreCampaignsLoc);
+            viewMoreCampaignsButton.Click();
+            return this;
         }
-        
-        public IList<IWebElement> GetCampaigns() {
+
+        public IList<IWebElement> GetCampaignsListFromHomePage()
+        {
 
             return driver.FindElements(campaignsListHomePageLoc);
+
         }
 
-        public void ClickOnCampaign(int number)
+        public void ClickOnCampaignFromHomePage(int numberOfCampaign)
         {
-           GetCampaigns()[number].Click();
+          //  Console.WriteLine(GetCampaignsListFromHomePage().ToString());
+            GetCampaignsListFromHomePage()[numberOfCampaign].Click();
         }
+
+      
+
+
+
+
+
+
 
     }
 }

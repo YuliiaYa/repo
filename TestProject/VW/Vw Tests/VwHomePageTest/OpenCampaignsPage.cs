@@ -14,31 +14,22 @@ namespace TestProject.VW.Vw_Tests.VwHomePageTest
     public class OpenCampaignsPage : InitTest
     {
         [Test]
+        [RetryFail]
         public void GoToCampaignsPage()
         {
             VwLoginPage loginPage = new VwLoginPage(driver);
             VwHomePage homePage = new VwHomePage(driver);
             VwHeader header = new VwHeader(driver);
+            loginPage.Login(VwLoginDataQa.centralMarketCorrectLogin, VwLoginDataQa.centralMarketCorrectPassword);
 
-            loginPage.OpenLoginPage();
-            loginPage.EnterLogin(VwLoginDataQa.centralMarketCorrectLogin);
-            loginPage.EnterPassword(VwLoginDataQa.centralMarketCorrectPassword);
-            loginPage.SubmitLogin();
 
             header.ClickCampaignTab();
        
-             WaitTillPageLoad(10.00);
-            //assert that campaigns is blue
-            // Assert.AreEqual(VwSiteUrls.vWDomenQa+VwSiteUrls.campaignsPageUrl , driver.Url);
-          //   Assert.AreEqual("rgb(1, 168, 236)",header.GetTabColor() );
-            // string color = header.campaignsTabLoc.GetCssValue("color");
-            // driver.FindElement(By.Name("submit")).GetCssValue("background-color");
-            //  string campaignsTabColor = driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[2]")).GetCssValue("color");
-           // Console.WriteLine(driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[2]")).GetCssValue("color"));
+             WaitTillPageLoad(15.00);
 
-            Console.WriteLine(driver.FindElement(By.XPath(".//*[@id='body']/div[2]/div/div/div/div/nav/div[3]/ul/li[2]")).GetCssValue("color"));
-          //  Console.WriteLine(driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[2]")).GetCssValue("color"));
-           // Console.WriteLine(driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[3]")).GetCssValue("color"));
+            Assert.AreEqual(VwSiteUrls.vWDomenQa+VwSiteUrls.campaignsPageUrl , driver.Url);
+            Assert.AreEqual("rgba(1, 168, 236, 1)", driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[2]/a")).GetCssValue("color"));
+           
 
         }
 

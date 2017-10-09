@@ -10,21 +10,17 @@ namespace TestProject.VW.Vw_Tests
     [TestFixture]
     public class IncorrectLoginData : InitTest
     {
-
         [Test]
         public void LoginWithIncorrectDataCentralMarket()
         {
             VwLoginPage loginPage = new VwLoginPage(driver);
-
-            loginPage.OpenLoginPage();
-            loginPage.EnterLogin(VwLoginDataQa.centralMarketCorrectLogin + 1);
-            loginPage.EnterPassword(VwLoginDataQa.centralMarketCorrectPassword + 1);
-            loginPage.SubmitLogin();
-            WaitTillPageLoad(10.00);
+            loginPage.Login(VwLoginDataQa.centralMarketCorrectLogin+1, VwLoginDataQa.centralMarketCorrectPassword+1);
+            //  WaitTillPageLoad(10.00);
 
             Assert.IsTrue(loginPage.IsLoginFormDisplayed(driver, loginPage.loginFieldLoc));
             Assert.IsTrue(loginPage.IsErrorMessageDisplayed(driver, loginPage.errorMessageLoc));
-            Assert.AreEqual("Error: Invalid username or password" , driver.FindElement(loginPage.errorMessageLoc).Text);
+            Assert.AreEqual("Error: Invalid username or password", driver.FindElement(loginPage.errorMessageLoc).Text);
+
         }
     }
 

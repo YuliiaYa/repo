@@ -16,11 +16,10 @@ namespace TestProject.VW.Vw_Pages
             this.driver = driver;
         }
         public readonly By headerImageLoc = By.XPath("//*[@class='volkswagen-logo']");
-        public readonly By userNameLoc = By.XPath("//span[@class='user-name']");
+        public readonly By userNameLoc = By.XPath(".//*[@class='dropdown-toggle']/span");
         public readonly By homeTabLoc = By.XPath("//*[@class='nav navbar-nav']/li[1]");
-        public readonly By campaignsTabLoc = By.XPath("//*[@class='nav navbar-nav']/li[2]");
+        public readonly By campaignsTabLoc = By.XPath("//*[@class='nav navbar-nav']/li[2]/a");
         public readonly By adminTabLoc = By.XPath("//*[@class='nav navbar-nav']/li[3]");
-        //      Assert that header menu is active;
 
         public VwHeader ClickHomeTab()
         {
@@ -40,32 +39,38 @@ namespace TestProject.VW.Vw_Pages
             adminTab.Click();
             return this;
         }
-        public VwHeader GetTabColor()
+    //    public VwHeader GetTabColor(IWebElement element)
+     //   {
+              //  IWebElement campaignsTab = driver.FindElement(campaignsTabLoc);
+        //       string buttonTextColor = element.GetCssValue("color");
+         //       return this;
+        //    }
+
+
+
+
+
+
+
+
+
+
+
+
+            public bool IsUserNameDisplayed( By by)
         {
-            //    IWebElement campaignsTab = driver.FindElement(campaignsTabLoc);
-            //    string buttonTextColor = campaignsTab.GetCssValue("color");
-            //    return this;
-            //}
-              string campaignsTabColor = driver.FindElement(By.XPath(".//*[@id='body']/div[2]/div/div/div/div/nav/div[3]/ul/li[2]")).GetCssValue("color");;
-          //  string campaignsTabColor = driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[2]")).GetCssValue("color");
-            return this;
-        }
-//.//*[@id='body']/div[2]/div/div/div/div/nav/div[3]/ul/li[2]
-        //*[@class='nav navbar-nav']/l
-            public bool IsUserNameDisplayed(IWebDriver driver, By userNameLoc)
-        {
-            if (driver.FindElement(userNameLoc).Displayed)
+            if (driver.FindElement(by).Displayed)
                 return true;
             else
                 return false;
         }
 
-            public bool IsNavigationForCentralMarketDisplayed() {
+            public bool IsNavigationForCentralMarketDisplayed(By element1, By element2, By element3) {
                 try
                 {
-                    driver.FindElement(adminTabLoc) ;
-                    driver.FindElement(campaignsTabLoc);
-                    driver.FindElement(adminTabLoc);
+                    driver.FindElement(element1) ;
+                    driver.FindElement(element2);
+                    driver.FindElement(element3);
             return true;
         }
             catch (NoSuchElementException e)

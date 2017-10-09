@@ -4,49 +4,47 @@ using TestProject.VW.TestData;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
-using System.Threading;
 using OpenQA.Selenium.Support.UI;
-
+using System.Threading;
 namespace TestProject.VW.Vw_Tests
 {
+    [TenantId("DP")]
     [TestFixture]
     public class CorrectLoginData : InitTest
     {
+    
         [Test]
+        [RetryFail]
         public void LoginWithCorrectDataCentralMarket()
         {
             VwLoginPage loginPage = new VwLoginPage(driver);
             VwHeader header = new VwHeader(driver);
 
-            loginPage.OpenLoginPage();
-            loginPage.EnterLogin(VwLoginDataQa.centralMarketCorrectLogin);
-            loginPage.EnterPassword(VwLoginDataQa.centralMarketCorrectPassword);
-            loginPage.SubmitLogin();
+            loginPage.Login(VwLoginDataQa.centralMarketCorrectLogin, VwLoginDataQa.centralMarketCorrectPassword);
             WaitTillPageLoad(10.00);
 
-            Assert.False(loginPage.IsLoginFormDisplayed(driver, loginPage.loginFieldLoc));
-            Assert.IsTrue(header.IsUserNameDisplayed(driver, header.userNameLoc));
-            Assert.AreEqual(VwLoginDataQa.centralMarketName, driver.FindElement(header.userNameLoc).GetAttribute("textContent"));
-            Assert.True(header.IsNavigationForCentralMarketDisplayed());
+            Assert.AreEqual("rgba(1, 168, 236, 1)", driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[1]/a")).GetCssValue("color"));
+            Assert.IsTrue(header.IsUserNameDisplayed(header.userNameLoc));
+             Assert.AreEqual(VwLoginDataQa.centralMarketName, driver.FindElement(header.userNameLoc).Text);
+            // Assert.True(header.IsNavigationForCentralMarketDisplayed(header.adminTabLoc, header.homeTabLoc, header.campaignsTabLoc));
         }
 
         [Test]
+       // [RetryFail]
         public void LoginWithCorrectDataLocalMarket()
         {
             VwLoginPage loginPage = new VwLoginPage(driver);
             VwHeader header = new VwHeader(driver);
+            loginPage.Login(VwLoginDataQa.localMarketCorrectLogin, VwLoginDataQa.localMarketCorrectPassword);
 
-            loginPage.OpenLoginPage();
-            loginPage.EnterLogin(VwLoginDataQa.localMarketCorrectLogin);
-            loginPage.EnterPassword(VwLoginDataQa.localMarketCorrectPassword);
-            loginPage.SubmitLogin();
-            WaitTillPageLoad(15.00);
+               WaitTillPageLoad(10.00);
+          //  Thread.Sleep(10);
 
-            Assert.False(loginPage.IsLoginFormDisplayed(driver, loginPage.loginFieldLoc));
-            Assert.IsTrue(header.IsUserNameDisplayed(driver, header.userNameLoc));
-            Assert.AreEqual(VwLoginDataQa.localMarketName, driver.FindElement(header.userNameLoc).GetAttribute("textContent"));
-
-            //add assert  IsNavigationForLocallMarketDisplayed());
-        }    
+            Assert.AreEqual("rgba(1, 168, 236, 1)", driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[1]/a")).GetCssValue("color")); 
+            Assert.True(header.IsUserNameDisplayed(header.userNameLoc));
+             Assert.AreEqual(VwLoginDataQa.localMarketName, driver.FindElement(header.userNameLoc).Text);
+            Console.WriteLine(driver.FindElement(header.userNameLoc).Text);
+            //  Assert.False(header.IsNavigationForCentralMarketDisplayed(header.adminTabLoc, header.homeTabLoc, header.campaignsTabLoc)); 30s can not optimize
+        }
     }
 }

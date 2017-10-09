@@ -12,18 +12,19 @@ namespace TestProject.VW.Vw_Pages
             public VwCampaignPage(IWebDriver driver) : base(driver)
             {
             }
-            public readonly By campaignsNameLoc = By.XPath("//*[@key='CampaignTitle']");
+            public readonly By campaignsNameLoc = By.XPath(".//nest[@key='CampaignTitle']");
             public readonly By contentRequestFormLoc = By.XPath("//*[text()='Content Request Form']");
             public readonly By campaignStrategyDocumentLoc = By.XPath("//*[text()='View The Campaign Strategy Document']");
+        //*[@class='col-sm-12']/[@nest='text']
+        //*nest[type='Text']
 
-
-        public VwCampaignPage GoToContentRequestForm()
+        public VwCampaignPage ClickOnContentRequestForm()
         {
                 IWebElement contentRequestForm= driver.FindElement(contentRequestFormLoc);
                 contentRequestForm.Click();
                 return this;
         }
-        public VwCampaignPage GoToCampaignStrategyDocument()
+        public VwCampaignPage ClickOnCampaignStrategyDocument()
         {
             IWebElement campaignStrategyDocument = driver.FindElement(campaignStrategyDocumentLoc);
             campaignStrategyDocument.Click();

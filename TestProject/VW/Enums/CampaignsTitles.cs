@@ -9,10 +9,10 @@ namespace TestProject.VW.Enums
 
     public enum Campaigns
     {
-        VVolkswagen_Tuareg,
+        Volkswagen_Tuareg,
         Volkswagen_Passat,
         Volkswagen_Polo
     }
-   
+
 
 }

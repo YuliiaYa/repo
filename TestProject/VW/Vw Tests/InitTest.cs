@@ -11,27 +11,30 @@ namespace TestProject.Vw_Tests
     public class InitTest
     {
         protected IWebDriver driver;
- 
+        protected String siteURL = "https://volkswagen.adzu4-qa-web.adzu.codeworldwide.com/#";
+
         [SetUp]
-        public void SetUp() 
+        protected void SetUp()
         {
             driver = new DriverSetUp("ChromeWindows").GetDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("https://volkswagen.adzu4-qa-web.adzu.codeworldwide.com/#");
+            driver.Navigate().GoToUrl(siteURL);
         }
 
         [TestMethod]
-        public void WaitTillPageLoad(double seconds)
+        protected void WaitTillPageLoad(double seconds)
         {
-            IWait<IWebDriver> wait = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
-            wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+            IWait<IWebDriver> wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
             wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return  $.active == 0").Equals(true));
+            wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
         }
+        
 
-       // [TearDown]
-       // public void TearDown()
-      //  {
-       //    driver.Quit();
-      //  }
+
+        [TearDown]
+        protected void TearDown()
+        {
+            // driver.Quit();
+        }
     }
 }
