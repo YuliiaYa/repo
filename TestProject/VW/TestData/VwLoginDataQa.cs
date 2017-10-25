@@ -8,13 +8,13 @@ namespace TestProject.VW.TestData
 {
     class VwLoginDataQa
     {
-        public static readonly String centralMarketCorrectLogin = "adzu4@codeworldwide.com";
-        public static readonly String centralMarketCorrectPassword = "adzuOS1!";
-        public static readonly String centralMarketName = "CODE";
+        public static readonly String centralMarketCorrectLogin = "";
+        public static readonly String centralMarketCorrectPassword = "";
+        public static readonly String centralMarketName = "";
 
-        public static readonly String localMarketCorrectLogin = "yuliiacode@gmail.com";
-        public static readonly String localMarketCorrectPassword = "Codewww_88";
-        public static readonly String localMarketName = "Germany";
+        public static readonly String localMarketCorrectLogin = "";
+        public static readonly String localMarketCorrectPassword = "";
+        public static readonly String localMarketName = "";
 
 
     }
