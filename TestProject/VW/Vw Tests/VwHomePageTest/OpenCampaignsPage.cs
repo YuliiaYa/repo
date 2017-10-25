@@ -25,7 +25,7 @@ namespace TestProject.VW.Vw_Tests.VwHomePageTest
 
             header.ClickCampaignTab();
        
-             WaitTillPageLoad(15.00);
+             WaitTillPageLoad(10.00);
 
             Assert.AreEqual(VwSiteUrls.vWDomenQa+VwSiteUrls.campaignsPageUrl , driver.Url);
             Assert.AreEqual("rgba(1, 168, 236, 1)", driver.FindElement(By.XPath("//*[@class='nav navbar-nav']/li[2]/a")).GetCssValue("color"));

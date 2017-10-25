@@ -7,16 +7,16 @@ using OpenQA.Selenium;
 
 namespace TestProject.VW.Vw_Pages
 {
-    class VwCampaignPage : VwHomePage
+        class VwCampaignPage : VwHomePage
     {
-            public VwCampaignPage(IWebDriver driver) : base(driver)
-            {
-            }
-            public readonly By campaignsNameLoc = By.XPath(".//nest[@key='CampaignTitle']");
-            public readonly By contentRequestFormLoc = By.XPath("//*[text()='Content Request Form']");
-            public readonly By campaignStrategyDocumentLoc = By.XPath("//*[text()='View The Campaign Strategy Document']");
-        //*[@class='col-sm-12']/[@nest='text']
-        //*nest[type='Text']
+        public VwCampaignPage(IWebDriver driver) : base(driver)
+        {
+        }
+
+        public readonly By campaignsNameLoc = By.XPath(".//*[@class='col-sm-12']/nest[@type='Text']");
+        public readonly By contentRequestFormLoc = By.XPath("//*[text()='Content Request Form']");
+        public readonly By campaignStrategyDocumentLoc = By.XPath("//*[text()='View The Campaign Strategy Document']");
+
 
         public VwCampaignPage ClickOnContentRequestForm()
         {
@@ -30,6 +30,8 @@ namespace TestProject.VW.Vw_Pages
             campaignStrategyDocument.Click();
             return this;
         }
+
+
     }
 
     }

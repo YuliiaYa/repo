@@ -9,7 +9,7 @@ namespace TestProject.VW.TestData
     class VwLoginDataQa
     {
         public static readonly String centralMarketCorrectLogin = "adzu4@codeworldwide.com";
-        public static readonly String centralMarketCorrectPassword = "f0lgate";
+        public static readonly String centralMarketCorrectPassword = "adzuOS1!";
         public static readonly String centralMarketName = "CODE";
 
         public static readonly String localMarketCorrectLogin = "yuliiacode@gmail.com";

@@ -16,9 +16,10 @@ namespace TestProject.VW.Vw_Pages
         {
             this.driver = driver;
         }
+
         public readonly By campaignsTitleLoc = By.XPath("//*[@class='col-sm-12']//*[text()='Campaigns']");
-        public readonly By campaignsListHomePageLoc = By.XPath("//*[@class='col-sm-4']");
-        public readonly By viewMoreCampaignsLoc = By.XPath("//button[@class='btn btn-default']");
+        protected readonly By campaignsListHomePageLoc = By.XPath("//*[@class='col-sm-4']");
+        protected readonly By viewMoreCampaignsLoc = By.XPath("//button[@class='btn btn-default']");
 
         public VwHomePage ClickViewMoreCampaigns()
         {
@@ -27,20 +28,26 @@ namespace TestProject.VW.Vw_Pages
             return this;
         }
 
+        public void ClickOnCampaignFromHomePage(int numberOfCampaign)
+        {
+            GetCampaignsListFromHomePage()[numberOfCampaign].Click();
+        }
         public IList<IWebElement> GetCampaignsListFromHomePage()
         {
-
             return driver.FindElements(campaignsListHomePageLoc);
 
         }
 
-        public void ClickOnCampaignFromHomePage(int numberOfCampaign)
-        {
-          //  Console.WriteLine(GetCampaignsListFromHomePage().ToString());
-            GetCampaignsListFromHomePage()[numberOfCampaign].Click();
+
+
         }
 
-      
+
+
+
+
+
+
 
 
 
@@ -49,4 +56,4 @@ namespace TestProject.VW.Vw_Pages
 
 
     }
-}
+

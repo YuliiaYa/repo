@@ -46,17 +46,6 @@ namespace TestProject.VW.Vw_Pages
          //       return this;
         //    }
 
-
-
-
-
-
-
-
-
-
-
-
             public bool IsUserNameDisplayed( By by)
         {
             if (driver.FindElement(by).Displayed)

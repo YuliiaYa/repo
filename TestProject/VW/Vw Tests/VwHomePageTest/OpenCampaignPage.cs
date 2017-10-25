@@ -1,10 +1,7 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using TestProject.Vw_Tests;
 using TestProject.VW.Vw_Pages;
 using TestProject.VW.TestData;
-using TestProject.VW.Enums;
-using OpenQA.Selenium;
 
 
 namespace TestProject.VW.Vw_Tests
@@ -14,7 +11,6 @@ namespace TestProject.VW.Vw_Tests
     {
         
         [Test]
-        //[RetryFail]
         public void OpenCampaignPage()
         {
             VwLoginPage loginPage = new VwLoginPage(driver);
@@ -22,15 +18,11 @@ namespace TestProject.VW.Vw_Tests
             VwCampaignPage campaignPage = new VwCampaignPage(driver);
 
             loginPage.Login(VwLoginDataQa.centralMarketCorrectLogin, VwLoginDataQa.centralMarketCorrectPassword);
-           
-            homePage.ClickOnCampaignFromHomePage(2);
-             WaitTillPageLoad(15.00);
+            homePage.ClickOnCampaignFromHomePage(VwCampaignData.numberOfTesingCampaign);
+            WaitTillPageLoad(10.00);
 
-            
-          // Assert.AreEqual(VwCampaignData.campaignName, driver.FindElement(campaignPage.campaignsNameLoc).Text);
+            Assert.AreEqual(VwCampaignData.campaignName, driver.FindElement(campaignPage.campaignsNameLoc).Text);
             Assert.AreEqual(VwSiteUrls.vWDomenQa + VwSiteUrls.campaignsPageUrl + "/VolkswagenTuareg", driver.Url);
-            Console.WriteLine(driver.FindElement(campaignPage.campaignsNameLoc).Text);
-
         }
     }
 }
